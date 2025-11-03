@@ -1,4 +1,3 @@
-import { Zap, FileCheck, Percent as Payment } from "lucide-react";
 import { FeatureCard } from "../Card/Feature";
 import feature1 from "@/public/feature_1.svg";
 import feature2 from "@/public/feature_2.svg";
