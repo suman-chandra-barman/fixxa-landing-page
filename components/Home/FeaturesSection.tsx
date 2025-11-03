@@ -1,4 +1,4 @@
-import { FeatureCard } from "../Card/Feature";
+import { FeatureCard } from "../Card/FeatureCard";
 import feature1 from "@/public/feature_1.svg";
 import feature2 from "@/public/feature_2.svg";
 import feature3 from "@/public/feature_3.svg";
