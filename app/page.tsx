@@ -12,14 +12,46 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <FeaturesSection />
-      <StackingCardsSection />
-      <HowItWorksSection />
-      <TestimonialSection />
-      <JoinUsSection />
-      <OutStorySection />
-      <Footer />
+
+      {/* ==== HERO ==== */}
+      <section id="home">
+        <HeroSection />
+      </section>
+
+      {/* ==== FEATURES ==== */}
+      <section id="features">
+        <FeaturesSection />
+      </section>
+
+      {/* ==== STACKING CARDS ==== */}
+      <section id="stacking-cards">
+        <StackingCardsSection />
+      </section>
+
+      {/* ==== HOW IT WORKS ==== */}
+      <section id="how-it-works">
+        <HowItWorksSection />
+      </section>
+
+      {/* ==== TESTIMONIAL ==== */}
+      <section id="testimonials">
+        <TestimonialSection />
+      </section>
+
+      {/* ==== JOIN US ==== */}
+      <section id="join-us">
+        <JoinUsSection />
+      </section>
+
+      {/* ==== OUR STORY ==== */}
+      <section id="story">
+        <OutStorySection />
+      </section>
+
+      {/* ==== FOOTER ==== */}
+      <section id="footer">
+        <Footer />
+      </section>
     </>
   );
 }

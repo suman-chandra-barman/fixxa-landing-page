@@ -1,21 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 import logo from "@/public/logo.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "How it works", href: "#how" },
-    { label: "Demo", href: "#demo" },
-    { label: "Our story", href: "#story" },
-    { label: "Get", href: "#get" },
+    { label: "Home", id: "home" },
+    { label: "How it works", id: "how-it-works" },
+    { label: "Demo", id: "testimonials" },
+    { label: "Our story", id: "story" },
+    { label: "Get", id: "join-us" },
   ];
+
+  const scrollToSection = (sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const timer = setTimeout(() => scrollToSection(hash), 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm">
@@ -26,16 +44,21 @@ export function Navbar() {
             <Image src={logo} alt="logo" />
           </div>
 
-          {/* Desktop Navigation */}
+          {/* ---------- Desktop Navigation ---------- */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
+              <Link
+                key={link.id}
+                href={`/#${link.id}`}
+                scroll={false} 
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.id);
+                }}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -64,18 +87,24 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* ---------- Mobile Navigation ---------- */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-border py-4 space-y-3">
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
+              <Link
+                key={link.id}
+                href={`/#${link.id}`}
+                scroll={false}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.id);
+                }}
                 className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
+
             <Button className="w-full rounded-full">
               Amend to get my time back
             </Button>
