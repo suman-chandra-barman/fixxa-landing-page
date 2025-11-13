@@ -33,12 +33,18 @@ export function HeroSection() {
           <div className="relative h-96 sm:h-full min-h-96 lg:min-h-[600px]">
             <video
               className="shadow-lg w-full h-full object-cover"
-              src="/video/hero-video.mp4"
               autoPlay
               muted
               loop
               playsInline
-            />
+              preload="metadata"
+              poster="/video/hero-video-poster.jpg"
+              aria-label="Hero demonstration video"
+            >
+              <source src="/video/hero-video.webm" type="video/webm" />
+              <source src="/video/hero-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>

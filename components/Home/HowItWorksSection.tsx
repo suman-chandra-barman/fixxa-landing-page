@@ -23,12 +23,18 @@ export function HowItWorksSection() {
             <div className="relative w-full max-w-sm aspect-video bg-black/60 rounded-lg overflow-hidden border border-gray-800">
               <video
                 className="w-full h-full object-cover"
-                src="/video/hero-video.mp4"
                 controls
                 autoPlay
                 loop
                 playsInline
-              />
+                preload="metadata"
+                poster="/video/hero-video-poster.jpg"
+                aria-label="Hero demonstration video"
+              >
+                <source src="/video/hero-video.webm" type="video/webm" />
+                <source src="/video/hero-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
