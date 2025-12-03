@@ -64,7 +64,7 @@ export function Footer() {
                     href="tel:+1234567890"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    +1234 567-7890
+                    +44 7943 568038
                   </Link>
                 </li>
                 <li>
@@ -72,7 +72,7 @@ export function Footer() {
                     href="mailto:fixxa@example.com"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    fixxa@example.com
+                   support@fixxa.ai
                   </Link>
                 </li>
               </ul>

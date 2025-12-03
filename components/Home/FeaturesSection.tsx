@@ -8,25 +8,26 @@ export function FeaturesSection() {
     {
       icon: feature1,
       title: "Quote faster. Work smarter.",
-      description:
-        "Turn your voice into a quote in seconds — no typing, no hassle.",
+      subtitle1: "75% of customers choose the first quote they receive.",
+      subtitle2: "→ Speed = more wins. Fixxa puts you first every time.",
     },
     {
       icon: feature2,
       title: "Look like a pro. Win more jobs.",
-      description: "Send branded quotes that show clients you mean business.",
+      subtitle1: "Professional quotes increase client trust by 3× and boost win rates by 18%.",
+      subtitle2: "→ A clean, branded quote instantly sets you apart.",
     },
     {
       icon: feature3,
       title: "Instant payments. Less chasing.",
-      description:
-        "Get paid the moment your client accepts — no waiting, no awkward reminders, just cash in the bank.",
+      subtitle1: "Trades who offer instant pay links get paid 2–3× faster than those who send bank details manually.",
+      subtitle2: "→ No more chasing. Just cash in the bank.",
     },
   ];
 
   return (
     <section className="bg-[#F8F8FF] px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-3">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
