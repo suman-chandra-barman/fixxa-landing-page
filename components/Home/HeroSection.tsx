@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center relative overflow-hidden pt-20 sm:pt-0">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-6 z-10">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-urbanist font-bold leading-tight text-balance">
+          <div className="space-y-6 z-10 py-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-urbanist font-bold leading-tight sm:leading-tight lg:leading-tight">
               Tired of wasting{" "}
               <span className="relative inline-block">hours on</span>{" "}
               <span className="italic font-medium">quotes and admin?</span>
@@ -23,7 +23,7 @@ export function HeroSection() {
 
             <Button
               size="lg"
-              className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-semibold px-8"
+              className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-semibold px-8 cursor-pointer"
             >
               Get My Time Back
             </Button>

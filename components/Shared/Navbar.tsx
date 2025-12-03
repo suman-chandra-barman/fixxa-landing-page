@@ -66,9 +66,9 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <Button
               variant="outline"
-              className="rounded-full border-foreground text-foreground hover:bg-foreground/10 bg-transparent"
+              className="rounded-full border-foreground text-foreground hover:bg-foreground/10 bg-transparent cursor-pointer"
             >
-              Amend to get my time back
+              Get my time back
             </Button>
           </div>
 
@@ -105,8 +105,8 @@ export function Navbar() {
               </Link>
             ))}
 
-            <Button className="w-full rounded-full">
-              Amend to get my time back
+            <Button className="w-full rounded-full cursor-pointer">
+              Get my time back
             </Button>
           </div>
         )}
