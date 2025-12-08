@@ -86,31 +86,29 @@ export function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#"
+                    href="https://www.facebook.com/share/1MnAKaZ632"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Facebook
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="https://www.tiktok.com/@fixxaai?_r=1&_t=ZN-91uhUEKgDqQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    X (twitter)
+                   Tiktok
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
-                    className="text-gray-300 hover:text-white text-sm transition-colors"
-                  >
-                    LinkedIn
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
+                    href="https://www.instagram.com/fixxaai?igsh=MWdoY2hiM2U0MnNrdA"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Instagram
