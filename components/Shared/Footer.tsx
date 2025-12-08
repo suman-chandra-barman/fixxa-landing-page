@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "@/public/logo_white.svg"
+import logo from "@/public/logo_white.svg";
 import Link from "next/link";
 
 export function Footer() {
@@ -22,7 +22,7 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {/* Brand section */}
             <div className="space-y-2">
-              <Image src={logo} alt="logo"/>
+              <Image src={logo} alt="logo" />
               <p className="text-sm sm:text-base text-gray-200 max-w-xs mt-6">
                 Making admin work disappear for freelancepeople everywhere
               </p>
@@ -36,7 +36,7 @@ export function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#"
+                    href="/privacy-policy"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Privacy policy
@@ -44,7 +44,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/terms-of-service"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Terms of service
@@ -72,7 +72,7 @@ export function Footer() {
                     href="mailto:fixxa@example.com"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                   support@fixxa.ai
+                    support@fixxa.ai
                   </Link>
                 </li>
               </ul>
@@ -101,7 +101,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                   Tiktok
+                    Tiktok
                   </Link>
                 </li>
                 <li>
