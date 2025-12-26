@@ -12,10 +12,8 @@ export function Navbar() {
 
   const navLinks = [
     { label: "Home", id: "home" },
-    { label: "How it works", id: "how-it-works" },
-    { label: "Demo", id: "testimonials" },
+    { label: "Pricing", id: "pricing" },
     { label: "Our story", id: "story" },
-    { label: "Get", id: "join-us" },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -36,7 +34,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -68,7 +66,7 @@ export function Navbar() {
               variant="outline"
               className="rounded-full border-foreground text-foreground hover:bg-foreground/10 bg-transparent cursor-pointer"
             >
-              Get my time back
+             Start Free Trial
             </Button>
           </div>
 
@@ -106,11 +104,11 @@ export function Navbar() {
             ))}
 
             <Button className="w-full rounded-full cursor-pointer">
-              Get my time back
+              Start Free Trial
             </Button>
           </div>
         )}
       </div>
-    </nav>
+    </header>
   );
 }

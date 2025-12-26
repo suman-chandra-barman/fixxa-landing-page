@@ -24,7 +24,7 @@ export function Footer() {
             <div className="space-y-2">
               <Image src={logo} alt="logo" />
               <p className="text-sm sm:text-base text-gray-200 max-w-xs mt-6">
-                Making admin work disappear for freelancepeople everywhere
+                More Time for what matters
               </p>
             </div>
 

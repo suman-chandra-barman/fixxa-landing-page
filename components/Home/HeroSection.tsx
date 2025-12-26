@@ -66,7 +66,7 @@ export function HeroSection() {
             )}
 
             <video
-              className={`shadow-lg w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
+              className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
                 isVideoLoading ? "opacity-0" : "opacity-100"
               }`}
               autoPlay
