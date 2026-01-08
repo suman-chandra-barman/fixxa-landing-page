@@ -1,4 +1,4 @@
-function OutStorySection() {
+function AboutUsSection() {
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 font-urbanist">
       <h2 className="text-xl">ABOUT US</h2>
@@ -10,4 +10,4 @@ function OutStorySection() {
   );
 }
 
-export default OutStorySection;
+export default AboutUsSection;

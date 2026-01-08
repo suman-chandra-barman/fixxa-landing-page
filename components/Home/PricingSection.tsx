@@ -40,7 +40,8 @@ export function PricingSection() {
             <div className="flex items-start gap-3">
               <span className="text-foreground text-xl">✔</span>
               <span className="text-foreground font-medium">
-                30-day free trial
+                14
+                -day free trial
               </span>
             </div>
             <div className="flex items-start gap-3">

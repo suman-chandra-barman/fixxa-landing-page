@@ -38,7 +38,7 @@ export function HeroSection() {
               size="lg"
               className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-semibold px-8 cursor-pointer"
             >
-              Get My Time Back
+              Start Free Trial
             </Button>
           </div>
 

@@ -1,10 +1,10 @@
 import { FeaturesSection } from "@/components/Home/FeaturesSection";
 import { HeroSection } from "@/components/Home/HeroSection";
-import OutStorySection from "@/components/Home/OutStorySection";
 import { StackingCardsSection } from "@/components/Home/StackingCardsSection";
 import { PricingSection } from "@/components/Home/PricingSection";
 import { Footer } from "@/components/Home/Footer";
 import { Navbar } from "@/components/Home/Navbar";
+import AboutUsSection from "@/components/Home/OutStorySection";
 
 export default function HomePage() {
   return (
@@ -30,9 +30,9 @@ export default function HomePage() {
         <TestimonialSection />
         <JoinUsSection /> */}
 
-      {/* ==== OUR STORY ==== */}
-      <section id="story">
-        <OutStorySection />
+      {/* ==== About us ==== */}
+      <section id="aboutus">
+        <AboutUsSection />
       </section>
 
        {/* ==== PRICING ==== */}

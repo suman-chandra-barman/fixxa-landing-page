@@ -13,7 +13,7 @@ export function Navbar() {
   const navLinks = [
     { label: "Home", id: "home" },
     { label: "Pricing", id: "pricing" },
-    { label: "Our story", id: "story" },
+    { label: "About us", id: "aboutus" },
   ];
 
   const scrollToSection = (sectionId: string) => {
