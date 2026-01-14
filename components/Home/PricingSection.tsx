@@ -14,22 +14,24 @@ export function PricingSection() {
           {/* Monthly Plan */}
           <div className="bg-[#F8F8FF] rounded-2xl p-8 border-2 border-border hover:border-foreground/20 transition-all duration-300">
             <div className="text-center mb-6">
-              <div className="text-4xl sm:text-5xl font-bold mb-2">£25</div>
-              <div className="text-muted-foreground">/ month + VAT</div>
+              <div className="text-4xl sm:text-5xl font-bold mb-2">£30</div>
+              <div className="text-muted-foreground">/month + VAT</div>
             </div>
           </div>
 
           {/* Annual Plan */}
           <div className="bg-[#F8F8FF] rounded-2xl p-8 border-2 border-foreground relative hover:border-foreground/80 transition-all duration-300">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-foreground text-background px-4 py-1 rounded-full text-sm font-semibold">
-              Save 20%
+              Save ~16.7%
             </div>
             <div className="text-center mb-6">
-              <div className="text-4xl sm:text-5xl font-bold mb-2">£240</div>
-              <div className="text-muted-foreground">/ year + VAT</div>
+              <div className="text-4xl sm:text-5xl font-bold mb-2">£300</div>
+              <div className="text-muted-foreground">
+                / year + VAT <p className="text-sm">(equivalent to 2 months free)</p>
+              </div>
             </div>
             <div className="text-center text-sm text-muted-foreground">
-              Save 20% with annual billing
+              Save ~16.7% with annual billing
             </div>
           </div>
         </div>
@@ -40,8 +42,7 @@ export function PricingSection() {
             <div className="flex items-start gap-3">
               <span className="text-foreground text-xl">✔</span>
               <span className="text-foreground font-medium">
-                14
-                -day free trial
+                14 -day free trial
               </span>
             </div>
             <div className="flex items-start gap-3">
