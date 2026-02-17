@@ -14,7 +14,7 @@ export function PricingSection() {
           {/* Monthly Plan */}
           <div className="bg-[#F8F8FF] rounded-2xl p-8 border-2 border-border hover:border-foreground/20 transition-all duration-300">
             <div className="text-center mb-6">
-              <div className="text-4xl sm:text-5xl font-bold mb-2">£30</div>
+              <div className="text-4xl sm:text-5xl font-bold mb-2">£29</div>
               <div className="text-muted-foreground">/month + VAT</div>
             </div>
           </div>
@@ -25,7 +25,7 @@ export function PricingSection() {
               Save ~16.7%
             </div>
             <div className="text-center mb-6">
-              <div className="text-4xl sm:text-5xl font-bold mb-2">£300</div>
+              <div className="text-4xl sm:text-5xl font-bold mb-2">£290</div>
               <div className="text-muted-foreground">
                 / year + VAT <p className="text-sm">(equivalent to 2 months free)</p>
               </div>
