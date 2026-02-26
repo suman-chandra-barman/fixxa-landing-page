@@ -157,7 +157,6 @@ export function HeroSection() {
               loop
               playsInline
               preload="auto"
-              poster="/video/hero-video-poster.jpg"
               aria-label="Hero demonstration video"
             >
               <source src="/video/hero-video.mp4" type="video/mp4" />
