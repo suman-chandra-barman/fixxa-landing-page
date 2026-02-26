@@ -1,61 +1,92 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 export function HeroSection() {
-  const [isVideoLoading, setIsVideoLoading] = useState(true);
-  const [hasVideoError, setHasVideoError] = useState(false);
+  const [videoState, setVideoState] = useState<"loading" | "playing" | "error">(
+    "loading",
+  );
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hasStartedPlaying = useRef(false);
+
+  const showVideo = useCallback(() => {
+    if (!hasStartedPlaying.current) {
+      hasStartedPlaying.current = true;
+      setVideoState("playing");
+    }
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Check if video is already ready (cached) - defer to avoid sync setState
-    if (video.readyState >= 3) {
-      requestAnimationFrame(() => {
-        setIsVideoLoading(false);
-      });
+    // If video is already playing or ready
+    if (video.readyState >= 3 || !video.paused) {
+      requestAnimationFrame(() => showVideo());
+      return;
     }
 
-    const handleCanPlay = () => {
-      setIsVideoLoading(false);
-      setHasVideoError(false);
-    };
-
-    const handlePlaying = () => {
-      setIsVideoLoading(false);
-      setHasVideoError(false);
-    };
-
-    const handleError = () => {
-      // Only show error if no valid source could be loaded
-      if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
-        setIsVideoLoading(false);
-        setHasVideoError(true);
+    const handleCanPlayThrough = () => showVideo();
+    const handlePlaying = () => showVideo();
+    const handleTimeUpdate = () => {
+      // If time is updating, video is definitely playing
+      if (video.currentTime > 0) {
+        showVideo();
       }
     };
 
-    const handleWaiting = () => {
-      // Video is buffering, but don't show loading if it already played
-      if (video.readyState < 3 && video.currentTime === 0) {
-        setIsVideoLoading(true);
-      }
+    // Only show error after a timeout and if video never started
+    let errorTimeout: ReturnType<typeof setTimeout>;
+    const handleStalled = () => {
+      errorTimeout = setTimeout(() => {
+        if (!hasStartedPlaying.current && video.readyState < 3) {
+          setVideoState("error");
+        }
+      }, 10000); // 10 second timeout
     };
 
-    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("canplaythrough", handleCanPlayThrough);
     video.addEventListener("playing", handlePlaying);
-    video.addEventListener("error", handleError);
-    video.addEventListener("waiting", handleWaiting);
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    video.addEventListener("stalled", handleStalled);
+
+    // Fallback: check video state after mount
+    const checkInterval = setInterval(() => {
+      if (video.readyState >= 3 || video.currentTime > 0) {
+        showVideo();
+        clearInterval(checkInterval);
+      }
+    }, 500);
+
+    // Clear interval after 15 seconds regardless
+    const clearFallback = setTimeout(() => {
+      clearInterval(checkInterval);
+      if (!hasStartedPlaying.current) {
+        setVideoState("error");
+      }
+    }, 15000);
 
     return () => {
-      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("canplaythrough", handleCanPlayThrough);
       video.removeEventListener("playing", handlePlaying);
-      video.removeEventListener("error", handleError);
-      video.removeEventListener("waiting", handleWaiting);
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+      video.removeEventListener("stalled", handleStalled);
+      clearInterval(checkInterval);
+      clearTimeout(clearFallback);
+      clearTimeout(errorTimeout);
     };
-  }, []);
+  }, [showVideo]);
+
+  const handleRetry = () => {
+    hasStartedPlaying.current = false;
+    setVideoState("loading");
+    const video = videoRef.current;
+    if (video) {
+      video.load();
+      video.play().catch(() => {});
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden pt-20 sm:pt-0">
@@ -86,7 +117,7 @@ export function HeroSection() {
           {/* Right Video */}
           <div className="relative h-96 sm:h-full min-h-96 lg:min-h-[600px]">
             {/* Loading Spinner */}
-            {isVideoLoading && !hasVideoError && (
+            {videoState === "loading" && (
               <div className="absolute inset-0 flex items-center justify-center bg-muted/20 backdrop-blur-sm z-10 rounded-lg">
                 <div className="flex flex-col items-center gap-3">
                   <div className="w-12 h-12 border-4 border-foreground/20 border-t-foreground rounded-full animate-spin" />
@@ -98,10 +129,20 @@ export function HeroSection() {
             )}
 
             {/* Error Fallback */}
-            {hasVideoError && (
-              <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg">
+            {videoState === "error" && (
+              <div className="absolute inset-0 flex items-center justify-center bg-muted/30 rounded-lg z-10">
                 <div className="text-center p-6">
-                  <p className="text-muted-foreground">Unable to load video</p>
+                  <p className="text-muted-foreground mb-3">
+                    Unable to load video
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRetry}
+                    className="rounded-full"
+                  >
+                    Retry
+                  </Button>
                 </div>
               </div>
             )}
@@ -109,7 +150,7 @@ export function HeroSection() {
             <video
               ref={videoRef}
               className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
-                isVideoLoading ? "opacity-0" : "opacity-100"
+                videoState === "playing" ? "opacity-100" : "opacity-0"
               }`}
               autoPlay
               muted
@@ -119,7 +160,6 @@ export function HeroSection() {
               poster="/video/hero-video-poster.jpg"
               aria-label="Hero demonstration video"
             >
-              <source src="/video/hero-video.webm" type="video/webm" />
               <source src="/video/hero-video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
