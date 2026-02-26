@@ -1,20 +1,61 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export function HeroSection() {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [hasVideoError, setHasVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleVideoLoad = () => {
-    setIsVideoLoading(false);
-  };
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const handleVideoError = () => {
-    setIsVideoLoading(false);
-    setHasVideoError(true);
-  };
+    // Check if video is already ready (cached) - defer to avoid sync setState
+    if (video.readyState >= 3) {
+      requestAnimationFrame(() => {
+        setIsVideoLoading(false);
+      });
+    }
+
+    const handleCanPlay = () => {
+      setIsVideoLoading(false);
+      setHasVideoError(false);
+    };
+
+    const handlePlaying = () => {
+      setIsVideoLoading(false);
+      setHasVideoError(false);
+    };
+
+    const handleError = () => {
+      // Only show error if no valid source could be loaded
+      if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+        setIsVideoLoading(false);
+        setHasVideoError(true);
+      }
+    };
+
+    const handleWaiting = () => {
+      // Video is buffering, but don't show loading if it already played
+      if (video.readyState < 3 && video.currentTime === 0) {
+        setIsVideoLoading(true);
+      }
+    };
+
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("error", handleError);
+    video.addEventListener("waiting", handleWaiting);
+
+    return () => {
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("error", handleError);
+      video.removeEventListener("waiting", handleWaiting);
+    };
+  }, []);
 
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden pt-20 sm:pt-0">
@@ -66,6 +107,7 @@ export function HeroSection() {
             )}
 
             <video
+              ref={videoRef}
               className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
                 isVideoLoading ? "opacity-0" : "opacity-100"
               }`}
@@ -73,11 +115,9 @@ export function HeroSection() {
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               poster="/video/hero-video-poster.jpg"
               aria-label="Hero demonstration video"
-              onLoadedData={handleVideoLoad}
-              onError={handleVideoError}
             >
               <source src="/video/hero-video.webm" type="video/webm" />
               <source src="/video/hero-video.mp4" type="video/mp4" />
